@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const bookRouter = Router();
 
-const { getBook, addBook, updateBook, deleteBook, getBookByTitle } = require("./controllers");
+const { getBook, addBook, updateBook, deleteBook, getBookByTitle, deleteAllBooks } = require("./controllers");
 
 // - - - - - - - - -  Basic 4 requests - - - - - - - - - - - - - - - - - - - - - 
 
@@ -20,6 +20,12 @@ bookRouter.get("/books/getbook/:title", getBookByTitle);
 // - - - - - -  PUT dynamic updates - - - - - - - - - - - - - - - - - - - - - - - -
 
 bookRouter.put("/books/updatebook/:title", updateBook);
+
+// - - - - - -  DEL all - - - - - - - - - - - - - - - - - - - - - - - -
+
+bookRouter.delete("/books/deleteallbooks", deleteAllBooks);
+
+
 
 
 module.exports = bookRouter;

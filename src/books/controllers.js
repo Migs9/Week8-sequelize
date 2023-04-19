@@ -80,6 +80,20 @@ const updateBook = async (req, res) => {
     }
 };
 
+// Delete All - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+const deleteAllBooks = async (req, res) => {
+    try {
+        const book = await Book.destroy ({
+            where: {}  
+        });
+        res.status(201).json({ message:"success", result: book}); 
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
 
 
 
@@ -89,4 +103,5 @@ module.exports = {
     updateBook,
     deleteBook,
     getBookByTitle,
+    deleteAllBooks,
 };
