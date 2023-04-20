@@ -6,6 +6,8 @@ const addBook = async(req, res) => {
             title: req.body.title,
             author: req.body.author,
             genre: req.body.genre,
+            AuthorId: req.body.AuthorId,
+            GenreId: req.body.GenreId,
         });
         res.status(201).json({ message:"success", book: book});
     } catch (error) {

@@ -1,11 +1,15 @@
 const Author = require("./model")
+const Book = require("../books/model");
 
 const getAuthor = async (req, res) => {
     try {
-        const author = await Author.findAll (
-            {where: {name: req.params.authorname}}
+        const author = await Author.findOne ({
+            where: {authorname: req.params.authorname},
+            include: Book,
+        },            
+            // console.log(req.params) // to test
         );
-        res.status(200).json({ message:"Here's the available data", book: author}); 
+        res.status(200).json({ message:"success", author: author}); 
     } catch (error) {
         console.log(error);
     }
@@ -14,10 +18,9 @@ const getAuthor = async (req, res) => {
 const addAuthor = async(req, res) => {
     try {
         const author = await Author.create ({
-            name: req.body.name,
-            book: req.body.book,
+            authorName: req.body.authorName,
         });
-        res.status(201).json({ message:"Entry successfully submitted", book: author});
+        res.status(201).json({ message:"success", author: author});
     } catch (error) {
         console.log(error);
     }
